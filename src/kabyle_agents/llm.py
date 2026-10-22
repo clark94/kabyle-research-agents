@@ -59,6 +59,14 @@ class OllamaComposer:
                 'citation_check': 'passed', 'semantic_fidelity': 'requires_human_review'}
 
 
+def token_limits(model, small):
+    """Newer OpenAI models (gpt-5*, o-series) reject temperature=0 and max_tokens, and spend part of the
+    completion budget on reasoning: use max_completion_tokens with a larger budget and the default temperature."""
+    if model.lower().startswith(('gpt-5', 'o1', 'o3', 'o4')):
+        return {'max_completion_tokens': max(small * 5, 4000)}
+    return {'temperature': 0, 'max_tokens': small}
+
+
 class OpenAIComposer:
     """OpenAI-compatible Chat Completions adapter. The API key is read from OPENAI_API_KEY only.
 
@@ -79,13 +87,12 @@ class OpenAIComposer:
             self.client.close()
 
     def compose(self, question, sources):
-        response = self.client.post(
-            self.url + '/chat/completions',
-            headers={'Authorization': 'Bearer ' + self.api_key},
-            json={'model': self.model, 'temperature': 0, 'max_tokens': 900,
-                  'response_format': {'type': 'json_object'},
-                  'messages': [{'role': 'system', 'content': SYSTEM},
-                               {'role': 'user', 'content': json.dumps({'question': question, 'sources': sources}, ensure_ascii=False)}]})
+        payload = {'model': self.model, 'response_format': {'type': 'json_object'},
+                   'messages': [{'role': 'system', 'content': SYSTEM},
+                                {'role': 'user', 'content': json.dumps({'question': question, 'sources': sources}, ensure_ascii=False)}]}
+        payload.update(token_limits(self.model, 900))
+        response = self.client.post(self.url + '/chat/completions',
+                                    headers={'Authorization': 'Bearer ' + self.api_key}, json=payload)
         response.raise_for_status()
         raw = response.json()
         claims = validate_claims(json.loads(raw['choices'][0]['message']['content']), sources)

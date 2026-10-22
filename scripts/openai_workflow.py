@@ -33,8 +33,13 @@ def chat_json(model, system, user, max_tokens=1200):
     if not key:
         sys.exit('OPENAI_API_KEY non défini. PowerShell : $env:OPENAI_API_KEY = "sk-..."')
     base = os.getenv('OPENAI_BASE_URL', 'https://api.openai.com/v1').rstrip('/')
-    body = json.dumps({'model': model, 'max_tokens': max_tokens, 'response_format': {'type': 'json_object'},
-                       'messages': [{'role': 'system', 'content': system}, {'role': 'user', 'content': user}]}).encode()
+    payload = {'model': model, 'response_format': {'type': 'json_object'},
+               'messages': [{'role': 'system', 'content': system}, {'role': 'user', 'content': user}]}
+    if model.lower().startswith(('gpt-5', 'o1', 'o3', 'o4')):  # modèles récents : autre paramètre, budget plus large
+        payload['max_completion_tokens'] = max(max_tokens * 5, 4000)
+    else:
+        payload['max_tokens'] = max_tokens
+    body = json.dumps(payload).encode()
     req = urllib.request.Request(base + '/chat/completions', data=body,
                                  headers={'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'})
     try:
