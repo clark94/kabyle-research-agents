@@ -1,0 +1,22 @@
+{
+  "_comment": "Glossaire de requêtes trilingue. Données curées : chaque entrée en kabyle doit être relue et validée par le comité linguistique avant d'être étendue. Ne jamais ajouter une forme par traduction automatique.",
+  "concepts": {
+    "kabyle": {"generic": true, "fr": ["kabyle", "berbère"], "en": ["kabyle", "berber"], "kab": ["taqbaylit", "tamaziɣt"]},
+    "french": {"generic": true, "fr": ["français", "française"], "en": ["french"], "kab": []},
+    "dictionary": {"fr": ["dictionnaire", "lexique", "glossaire", "vocabulaire"], "en": ["dictionary", "lexicon", "glossary", "vocabulary"], "kab": ["amawal"]},
+    "medicine": {"fr": ["médecine", "médical", "médicale", "santé"], "en": ["medicine", "medical", "health"], "kab": ["ddwa"]},
+    "thesis": {"fr": ["thèse"], "en": ["thesis", "dissertation"], "kab": []},
+    "book": {"fr": ["livre", "ouvrage"], "en": ["book"], "kab": ["adlis"]},
+    "literature": {"fr": ["littérature"], "en": ["literature"], "kab": ["tasekla"]},
+    "poetry": {"fr": ["poésie", "poème"], "en": ["poetry", "poem"], "kab": ["tamedyazt", "isefra"]},
+    "translation": {"fr": ["traduction", "traduire"], "en": ["translation", "translate"], "kab": ["tasuqilt"]},
+    "audio": {"fr": ["audio", "enregistrement", "archive sonore", "sonore"], "en": ["audio", "recording", "sound archive"], "kab": []},
+    "tale": {"fr": ["conte"], "en": ["tale", "folktale"], "kab": []},
+    "music": {"fr": ["musique", "chanson"], "en": ["music", "song"], "kab": []},
+    "corpus": {"fr": ["corpus"], "en": ["corpus"], "kab": []},
+    "nlp": {"fr": ["TAL", "traitement automatique des langues"], "en": ["NLP", "natural language processing"], "kab": []},
+    "syntax": {"fr": ["syntaxe"], "en": ["syntax"], "kab": []},
+    "writing": {"fr": ["écriture", "graphie", "orthographe"], "en": ["writing", "script", "orthography", "spelling"], "kab": []},
+    "tifinagh": {"fr": ["tifinagh"], "en": ["tifinagh"], "kab": ["tifinagh"]}
+  }
+}

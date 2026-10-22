@@ -1,0 +1,50 @@
+{
+  "questions": 17,
+  "catalog_fingerprint": "sha256:bd31c851ac36bd8dbc60f53b7c4770e155e971ce8515bec9d2bc5e80c8e0bf64",
+  "retrieval": "lexical",
+  "llm_requested": false,
+  "recall": 1.0,
+  "precision": 1.0,
+  "mrr": 1.0,
+  "citation_validity": 1.0,
+  "abstention_rate": 0.29411764705882354,
+  "abstention_on_unanswerable": 1.0,
+  "latency_ms": {
+    "mean": 0.5111764705882353,
+    "p50": 0.244,
+    "p95": 2.474
+  },
+  "by_language": {
+    "fr": {
+      "questions": 6,
+      "status_correct": 6
+    },
+    "en": {
+      "questions": 5,
+      "status_correct": 5
+    },
+    "kab": {
+      "questions": 2,
+      "status_correct": 2
+    },
+    "und": {
+      "questions": 4,
+      "status_correct": 4
+    }
+  },
+  "tokens": {
+    "input": 0,
+    "output": 0,
+    "complete": true
+  },
+  "estimated_token_cost": null,
+  "estimated_infrastructure_cost": null,
+  "cost_note": "Currency follows supplied rates. Infrastructure estimate excludes startup/model download. Null means not priced.",
+  "fidelity": {
+    "generated_claims": 0,
+    "human_annotated": 0,
+    "annotation_coverage": null,
+    "human_supported_rate": null
+  },
+  "notice": "Scores concern this dataset only; technical citation validity is not semantic fidelity."
+}

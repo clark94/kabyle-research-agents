@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    ports: ["127.0.0.1:8000:8000"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  mcp:
+    build: .
+    command: ["python", "-m", "kabyle_agents.mcp_server", "--transport", "streamable-http", "--host", "0.0.0.0", "--port", "8001"]
+    ports: ["127.0.0.1:8001:8001"]
+  a2a:
+    build: .
+    command: ["python", "-m", "kabyle_agents.a2a_server", "--host", "0.0.0.0", "--port", "8002"]
+    ports: ["127.0.0.1:8002:8002"]
